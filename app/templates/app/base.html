@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnomarket</title>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,600&display=swap" rel="stylesheet">
+    {% load static %}
+    {% block css %}
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'app/css/estilos.css'%}">
+    
+</head>
+<body>
+
+    
+    <header id="header">
+        <img class="menu" src="{% static 'app/img/menuiconwhite.png' %}" alt="menu" id="menu">
+        <div class="contenedor_logo">
+            <img  class="logo"  src="{% static 'app/img/tecnomarketpngicono.png' %}" alt="logo">
+        </div>
+
+        <div>
+            
+            <nav id="nav">
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}"> Inicio </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'contacto' %}">Contacto</a>
+                    </li>
+
+                        <a href="{% url 'agregar-producto' %}">Agregar productos</a>
+                    </li>
+
+                    </li>
+                        <a href="{% url 'listar-producto' %}">Listado productos</a>
+                    </li>
+                        {% if user.is_authenticated %}
+                        </li>
+                            <a href="{% url 'logout' %}">Cerrar sesion</a>
+                        </li>
+                        <li>
+                            <a href="#">@{{ user.username }}</a>
+                        </li>
+                        {% else %}
+                        </li>
+                            <a href="{% url 'login' %}">Iniciar sesion</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'registro' %}">Registrate</a>
+                        </li>
+                        {% endif %}
+                </ul>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <div id="contenido">
+
+
+
+        {% block content%}
+
+
+        {% endblock %}
+
+    </div>
+
+    <br>
+    <footer>
+        <div class="marcas">
+            <img src="{% static 'app/img/footer/apple.png' %}"  alt="apple">
+            <img src="{% static 'app/img/footer/lenovo.png' %}"  alt="lenovo">
+            <img src="{% static 'app/img/footer/microsoft.png' %}"  alt="microsoft">
+            <img src="{% static 'app/img/footer/samsung.png' %}" alt="samsung">
+            <img src="{% static 'app/img/footer/xiaomi.png' %}"  alt="xiaomi">
+        </div>
+        <div class="logo_footer">
+            <img src="{% static 'app/img/tecnomarketpngicono.png' %}" alt="logo">
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+    <script src="js/menu.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!--Script de alertas con diseño agregado previamente en settings-->
+    {% if messages %}
+
+        {% for mensajes in messages %}
+
+            <script>
+            Swal.fire({
+                'title':"Felicitaciones",
+                'text':"{{mensajes}}",
+                'icon':"success",
+            })
+            </script>
+
+        {% endfor %}
+
+    {% endif %}
+
+    {% block js %}
+    {% endblock %}
+
+</body>
+</html>
