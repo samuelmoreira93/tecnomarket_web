@@ -40,7 +40,7 @@
             <tr>
                 <th>Nombre</th>
                 <th>Precio</th>
-                <th>Marca</th>
+                <th>Categoria</th>
                 <th>Es nuevo?</th>
                 <th>Opciones</th>
             </tr>
@@ -49,7 +49,7 @@
             <tr>
                 <td>{{ producto.nombre | title }}</td>
                 <td>{{ producto.precio | intcomma }}</td>
-                <td>{{ producto.marca | title }}</td>
+                <td>{{ producto.categoria | title }}</td>
 
                 <td>
                     {% if producto.nuevo %}

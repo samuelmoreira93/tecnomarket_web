@@ -15,7 +15,7 @@ class Producto(models.Model):
     precio=models.IntegerField()
     descripcion=models.TextField()
     nuevo=models.BooleanField()
-    marca=models.ForeignKey(Marca,on_delete=models.PROTECT) #envia una adventencia antes de eliminar
+    categoria=models.ForeignKey(Marca,on_delete=models.PROTECT) #envia una adventencia antes de eliminar
     fecha_fabricacion=models.DateField()
     imagen=models.ImageField(upload_to='productos',null=True, blank=True)
 
